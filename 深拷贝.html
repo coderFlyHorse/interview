@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 深拷贝的几种方法
+        let obj = {
+            person: "wo",
+            age: "27",
+            career: {
+                teacher: true,
+
+            }
+
+
+        }
+        const checkedType = (target) => Object.prototype.toString.call(target).replace(/\[object (\w+)\]/, "$1").toLowerCase();
+        console.log(checkedType(obj))
+ 
+
+        const clone = (target) => {
+            let result;
+            let type = checkedType(target);
+            if (type === 'object') result = {};
+            else if (type === 'array') result = [];
+            else return target;
+
+            for (let key in target) {
+                if (checkedType(target[key]) === "object" || checkedType(target[key]) === "array") {
+                    result[key] = clone(target[key])
+                } else {
+                    result[key] = target[key]
+                }
+            }
+            return result
+        }
+        console.log(checkedType(clone))
+    </script>
+</body>
+
+</html>

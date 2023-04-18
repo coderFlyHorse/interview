@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 节流 n秒内只执行一次，如果重复触发则只执行一次
+        //时间戳写法
+        function throttle(fn, delay = 300) {
+
+            let oldTime = Date.now()
+            return function (...args) {
+                let newTime = Date.now()
+                if (newTime - oldTime >= delay) {
+                    fn.apply(fn, args)
+                    oldTime = Date.now()
+                }
+            }
+        }
+        function throttle2(fn, dalay = 500) {
+            let timer = null
+            return function (fn, ...args) {
+                if (!timer) {
+                    timer = setTimeout(() => {
+                        fn.apply(fn, args)
+                        timer = null
+                    }, delay);
+                }
+            }
+        }
+        //防抖:n秒后才执行，如果触发则重新计时
+
+        function debounce(fn, wait) {
+            let timer
+            return function () {
+                let context = this
+                let args = arguments
+                clearTimeout(timeout)
+                timer = setTimeout(() => {
+                    fn.apply(context, args)
+                }, wait);
+            }
+
+        }
+    </script>
+</body>
+
+</html>
