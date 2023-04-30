@@ -1,7 +1,7 @@
 <template>
   <div>
     <main class="outside_container">
-      <p class="refreshText"></p>
+      <p class="refreshText">refreshText</p>
       <ul @touchstart="touch" @touchmove="touchmove" ref="refreshContainer" id="refreshContainer">
         <li>111</li>
         <li>222</li>
@@ -37,6 +37,7 @@ export default {
     touchmove(e) {
       // 下拉的时候记录差值
       this.transitionHeight = e.touches[0].pageY - this.startProps
+      // 下拉的时候大于0 上拉的时候小于0
       console.log(this.transitionHeight)
     }
   } 
@@ -47,6 +48,9 @@ export default {
 <style lang="less" scoped>
 .outside_container{
   height: 300px;
-  
+  .refreshText{
+    height:300px;
+    border: 1px solid red;
+  }
 }
 </style>

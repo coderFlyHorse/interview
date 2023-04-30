@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [
+            { id: 1, name: '部门1', pid: 0 },
+            { id: 2, name: '部门2', pid: 1 },
+            { id: 3, name: '部门3', pid: 1 },
+            { id: 4, name: '部门4', pid: 3 },
+            { id: 5, name: '部门5', pid: 4 },
+        ]
+        const treeFuncOptimized = (arr, pid = 0) => {
+            const map = new Map()
+            // 先将pid一致的放到一起
+            arr.forEach((item,index) => {
+                if (!map.has(item.pid)) {
+                    map.set(item.pid, [])
+                }
+                map.get(item.pid).push(item)
+            });
+            console.log(map)
+            const buildTree = (parentId) => {
+                const children = map.get(parentId) || []
+                // 确定上下级关系
+                children.forEach((child) => {
+                    //上级的id = 下级的pid
+                    child.children = buildTree(child.id)
+                })
+
+                return children
+            }
+
+            return buildTree(pid)
+        }
+
+        console.log(treeFuncOptimized(arr,0))
+    </script>
+</body>
+
+</html>
