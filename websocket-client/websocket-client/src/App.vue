@@ -1,26 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <button @click="sendMsg"></button>
+  </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+import Ws from './Ws.js';
+let ws = null
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+const init = async () => {
+  ws = await new Ws.create('ws://localhost:8000');
+}
+const sendMsg = () => {
+  if (ws) {
+    ws.sendMsg({
+      mode: "MESSAGE",
+      msg: "Hello, Websocket"
+    });
   }
 }
+init()
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
