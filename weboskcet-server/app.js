@@ -10,10 +10,10 @@ function handleConnection(ws) {
 
 function handleClose() {
     console.log("server close")
-    this.send({
+    this.send(JSON.stringify({
         mode: "Message",
         msg: "--Server closed"
-    })
+    }))
 }
 function handleError(e) {
     console.log("server error" + e)
@@ -23,11 +23,11 @@ function handleMessage(data) {
 
     switch (mode) {
         case "MESSAGE":
-             console.log("User message")
+            console.log("User message")
             this.send(JSON.stringify(JSON.parse(data)))
             break;
-        case "HEAT_BEAT":
-            console.log("HEAT_BEAT")
+        case "HEART_BEAT":
+            console.log("HEART_BEAT")
             this.send(JSON.stringify(JSON.parse(data)))
             break;
 

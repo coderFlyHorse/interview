@@ -1,15 +1,27 @@
 <template>
   <div>
-    <button @click="sendMsg"></button>
+    <button @click="sendMsg">Connect</button>
   </div>
 </template>
 
 <script setup>
 import Ws from './Ws.js';
+
 let ws = null
 
-const init = async () => {
-  ws = await new Ws.create('ws://localhost:8000');
+
+function wsConnect(){
+  ws =   Ws.create('ws://localhost:8000',wsReconnect);
+}
+function wsReconnect(){
+  if(!ws){
+    return wsConnect()
+  }
+  if(ws&&ws.reconnectTimer){
+    clearTimeout(ws.reconnectTimer);
+    ws.reconnectTimer = null
+    wsConnect()
+  }
 }
 const sendMsg = () => {
   if (ws) {
@@ -19,7 +31,8 @@ const sendMsg = () => {
     });
   }
 }
-init()
+wsConnect()
+
 </script>
 
 <style></style>
