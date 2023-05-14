@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1：Object构造函数创建
+        var Person = new Object();
+        Person.name = "me";
+        console.log(Person)
+        //字面量
+        var obj = {
+            name:"me",
+        }
+        // 工厂模式
+        function createPerson(name, age) {
+            var person = new Person()
+            person.name = name; 
+            person.age = age;
+        }
+        createPerson("me", 26)
+        // 构造函数
+        function CreateNewPerson(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        let X = new CreateNewPerson("me", 26);
+        // 原型对象
+        function person2(){}
+        person2.prototype.name="me"
+
+    </script>
+</body>
+</html>

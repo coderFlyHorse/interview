@@ -10,15 +10,25 @@
 
 <body>
 
-    <script> 
+    <script>
         function myNew(fn, ...args) {
-         
+            console.log(args)
+            console.log(arguments)
+            console.log(fn)
             // var obj = Object.create(fn.prototype)
             let obj = {}
-            obj.__proto__==fn.prototype
-            fn.apply(obj,args)
+            obj.__proto__ == fn.prototype
+            fn.apply(obj, args)
             return obj
         }
+        function Cons(name, age) {
+            console.log(this)
+            this.name = name
+            this.age = age
+            console.log(this)
+        }
+        let cons1 = myNew(Cons,"me",26)
+        console.log(cons1)
     </script>
 </body>
 
