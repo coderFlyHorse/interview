@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // map 对数组中的每一个元素进行加工，返回加工后的新数组
+        Array.prototype.myMap = function(callback) {
+         let result = [];
+         for(let i = 0; i < this.length; i++) {
+            result.push(callback(this[i],index,this))
+         }
+         return result;
+        }
+        // forEach
+        Array.prototype.myForEach = function(callback) {
+            for(let i = 0; i < this.length; i++) {
+            result.push(this[i],index,this)
+         }
+        }
+        // filter
+        Array.prototype.myFilter = function(callback) {
+            let result = []
+            for(let i = 0; i < this.length; i++) {
+                if(callback(this[i],index,this)){
+                    result.push(this[i])
+                }
+           }
+         return result
+        }
+        //find
+        Array.prototype.myFind = function(callback) {
+            for(let i = 0; i < this.length; i++) {
+                if(callback(this[i],index,this)){
+                    return this[i]
+                }
+            }
+            return undefined
+        }
+        //findIndex
+        Array.prototype.myFind = function(callback) {
+            for(let i = 0; i < this.length; i++) {
+                if(callback(this[i],index,this)){
+                    return index
+                }
+            }
+            return undefined
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 数组交集并集差集
+        var arr1 =[1,2,3,4,5]
+        var arr2 =[1,2,3,4,50,24,35]
+        // 并集
+        function union(arr1, arr2) {
+            return [...new Set([...arr1, ...arr2])] 
+        }
+        // 交集
+
+        function interSection(arr1, arr2) {
+             let s1 = new Set([...arr1])
+             let s2 = new Set([...arr2])
+             let newArr =  [...s1].filter((item)=>{
+               return s2.has(item)
+             })
+             return newArr
+        }
+   
+        // 差集
+        // arr1 差 arr2
+        function except(arr1, arr2) {
+            let s1 = new Set([...arr1])
+             let s2 = new Set([...arr2])
+             let newArr = [...s1]
+             newArr.filter((item)=>{
+               return !s2.has(item)
+             })
+
+            return newArr
+        }
+
+    </script>
+</body>
+</html>
