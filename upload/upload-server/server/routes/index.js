@@ -79,12 +79,12 @@ const mergeChunks = (filename, size) => {
       readStream.on('end', () => {
         // 删掉读取的文件分块
         console.log(path.resolve(readPath, chunkPath))
-        fs.unlinkSync(path.resolve(readPath, chunkPath))
+        fs.rmSync(path.resolve(readPath, chunkPath))
         count++
         if (count >= length) {
           //  所有块完成
           console.log(count)
-          // fs.rmdirSync(readPath)
+          fs.rmSync(readPath)
         }
       })
     })
