@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [
+            { id: 1, name: '部门1', pid: 0 },
+            { id: 2, name: '部门2', pid: 1 },
+            { id: 3, name: '部门3', pid: 1 },
+            { id: 4, name: '部门4', pid: 3 },
+            { id: 5, name: '部门5', pid: 4 },
+        ]
+        function treeData(arr, pid = 0) {
+            var map = new Map()
+            arr.forEach((item) => {
+                if (!map.has(item.pid)) {
+                    map.set(item.pid, [])
+                }
+                // pid 一样的分到同一个数组
+                map.get(item.pid).push(item)
+            })
+
+            const buildTree = (parentId) => {
+                const children = map.get(parentId) || []
+                 
+                console.log(children);
+                children.forEach(child => {
+                    child.children = buildTree(child.id)
+                })
+
+                return children
+
+            }
+
+            return buildTree(pid)
+
+
+
+        }
+        let newArr = treeData(arr)
+        console.log(newArr);
+    </script>
+</body>
+
+</html>
