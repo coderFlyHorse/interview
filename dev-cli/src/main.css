@@ -11,4 +11,6 @@ body {
     transform: translateX(-50%);
   }
   
-  
+  .me{
+    border-right-color: antiquewhite;
+  }
