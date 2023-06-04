@@ -29,7 +29,7 @@
 
             const buildTree = (parentId) => {
                 const children = map.get(parentId) || []
-                 
+
                 console.log(children);
                 children.forEach(child => {
                     child.children = buildTree(child.id)

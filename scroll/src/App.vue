@@ -1,26 +1,30 @@
 <template>
   <div id="app">
 
-    <HelloWorld/>
-    <SwiperComponents></SwiperComponents>
+    <BlockScroll/>
     <VirtualScroll/>
+ 
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-const SwiperComponents =()=> import ('./components/SwiperComponents.vue') 
+
 const VirtualScroll = ()=> import ('./components/VirtualScroll.vue')
+const BlockScroll = ()=> import ('./components/BlockScroll.vue')
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    SwiperComponents,
-    VirtualScroll
+    // HelloWorld,
+    // SwiperComponents,
+    VirtualScroll,
+    BlockScroll
   }
 }
 </script>
 
 <style>
-
+#app{
+  margin: 0 auto;
+ 
+}
 </style>

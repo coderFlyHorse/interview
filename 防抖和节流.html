@@ -7,14 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<button id="btn">按钮</button>
 
 <body>
     <script>
         // 节流 n秒内只执行一次，如果重复触发则只执行一次
+        let btn = document.getElementById("btn")
+        btn.onclick = throttle(log, 3000)
+        function log() {
+            console.log("回调函数")
+        }
         //时间戳写法
-        function throttle(fn, delay = 300) {
-
+        function throttle(fn, delay = 3000) {
             let oldTime = Date.now()
+
             return function (...args) {
                 let newTime = Date.now()
                 if (newTime - oldTime >= delay) {
@@ -23,7 +29,7 @@
                 }
             }
         }
-        function throttle2(fn, dalay = 500) {
+        function throttle2(fn, delay = 500) {
             let timer = null
             return function (fn, ...args) {
                 if (!timer) {
@@ -36,17 +42,27 @@
         }
         //防抖:n秒后才执行，如果触发则重新计时
 
-        function debounce(fn, wait) {
-            let timer
-            return function () {
-                let context = this
-                let args = arguments
-                clearTimeout(timeout)
-                timer = setTimeout(() => {
-                    fn.apply(context, args)
-                }, wait);
-            }
+        // function debounce(fn, wait) {
+        //     let timer
+        //     return function () {
+        //         let context = this
+        //         let args = arguments
+        //         clearTimeout(timeout)
+        //         timer = setTimeout(() => {
+        //             fn.apply(context, args)
+        //         }, wait);
+        //     }
 
+        // }
+
+        function debounce(fn, delay) {
+            let timer = null
+            return function debounceFn(...args) {
+                clearTimeout(timer)
+                timer = setTimeout(() => {
+                    fn.apply(this, ...args)
+                }, delay);
+            }
         }
     </script>
 </body>

@@ -26,11 +26,16 @@
                 }
                 map.get(item.pid).push(item)
             })
+            console.log(map)
+             let count = 0
             const buildTree = (parentId) => {
                 const children = map.get(parentId) || []
+          
+             
                 // 确定上下级关系
-                children.forEach((child) => {
+                children.forEach((child,index) => {
                     //上级的id = 下级的pid
+      
                     child.children = buildTree(child.id)
                 })
 
