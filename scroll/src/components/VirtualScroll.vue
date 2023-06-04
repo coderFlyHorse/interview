@@ -44,6 +44,7 @@ export default {
         handleScroll() {
             //scrollTop 滚动条向下滚动的距离
             this.scrollTop = this.$refs.virtual_list.scrollTop
+               //scrollTop 滚动条向下滚动的距离 除以单个item的高频度得到start
             this.start = this.scrollTop / this.height
             console.log(this.start)
         },
